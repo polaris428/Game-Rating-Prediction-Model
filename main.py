@@ -1,5 +1,6 @@
 from turtle import st
 import pandas as pd
+import string
 
 data = pd.read_csv('steam_games.csv',sep=',')
 data = data[data['types'] == 'app']
@@ -15,6 +16,14 @@ data=data[~original_price]
 data["original_price"]=data["original_price"].astype('str').str.replace("Free","$0")
 
 data["original_price"]=data["original_price"].astype('str').str.replace("$","")
+
+data["developer"]=data["developer"].astype('str').str.strip(string.punctuation)
+
+
+
+    
+
+
 print("출력시작") 
   
 print(data)
