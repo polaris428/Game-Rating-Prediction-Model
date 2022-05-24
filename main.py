@@ -11,10 +11,12 @@ data.drop(columns = ['url','types','name','recent_reviews','desc_snippet','publi
 data["all_reviews"]=data["all_reviews"].str.extract(r'(\d+%)')
 data["all_reviews"]=data["all_reviews"].astype('str').str.replace("%","")
 
-original_price=data["all_reviews"].isin(["nan"])
-data=data[~original_price]
+#original_price=data["all_reviews"].isin(["nan"])
+#data=data[~original_price]
+data=data[data.original_price!="nan"]
+data=data[data.all_reviews!="nan"]
 data["original_price"]=data["original_price"].astype('str').str.replace("Free","$0")
-
+data["original_price"]=data["original_price"].astype('str').str.replace("0 To Play ","$0")
 data["original_price"]=data["original_price"].astype('str').str.replace("$","")
 
 data["developer"]=data["developer"].astype('str').str.strip(string.punctuation)
