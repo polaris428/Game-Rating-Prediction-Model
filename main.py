@@ -19,6 +19,7 @@ data["original_price"]=data["original_price"].astype('str').str.replace("$","")
 
 data["developer"]=data["developer"].astype('str').str.strip(string.punctuation)
 
+data["languages"]=data["languages"].astype('str').str.split(",")
 
 
     
